@@ -34,7 +34,7 @@ protected override XDocument LoadDashboard(string dashboardID) {
 
 If you open the [Dashboard](Views/Home/Dashboard.cshtml) view without logging in, you will see the following error:
 
-![](auth_error.png)
+![](img/auth_error.png)
 
 ## See Also
 
