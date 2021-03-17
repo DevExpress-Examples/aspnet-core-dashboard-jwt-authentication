@@ -17,17 +17,18 @@ function onBeforeRender(sender) {
 }
 ```
 
-Main JWT and Dashboard configurations are defined in the [CS/Startup.cs](Startup.cs) file. We use the technique from the [A better approach to use HttpContext outside a Controller in .Net Core 2.1 - Quick Dev Notes](https://www.quickdevnotes.com/better-approach-to-use-httpcontext-outside-a-controller-in-net-core-2-1/) webpage to access the current user name (`AppContext.Current.User.Identity.Name`) in code. Note that you can use it in [DashboardConfigurator](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWeb.DashboardConfigurator?p=netframework) events and Dashboard storages. Here are corresponding code parts:
+Main JWT and Dashboard configurations are defined in the [CS/Startup.cs](Startup.cs) file. We use the [IHttpContextAccessor](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-context?view=aspnetcore-3.0) with dependency injection to access the current user name (`HttpContext.User.Identity.Name`) in code. Note that you can access it in [DashboardConfigurator](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWeb.DashboardConfigurator?p=netframework) events and Dashboard storages. Here are corresponding code parts:
 
 ```cs
 // Startup.cs:
+var contextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
 configurator.CustomParameters += (s, e) => {
-    e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), AppContext.Current.User.Identity.Name));
+    e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), contextAccessor.HttpContext.User.Identity.Name));
 };
 ...
 // CustomDashboardStorage.cs:
 protected override XDocument LoadDashboard(string dashboardID) {
-    Debug.WriteLine(AppContext.Current.User.Identity.Name);
+    Debug.WriteLine(сontextAccessor.HttpContext.User.Identity.Name);
     return base.LoadDashboard(dashboardID);
 }
 ```

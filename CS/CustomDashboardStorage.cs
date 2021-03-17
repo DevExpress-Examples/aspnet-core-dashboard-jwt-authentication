@@ -1,15 +1,19 @@
-﻿using ASPNETCore30Dashboard;
-using DevExpress.DashboardWeb;
+﻿using DevExpress.DashboardWeb;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
 using System.Xml.Linq;
 
 public class CustomDashboardFileStorage : DashboardFileStorage {
-    public CustomDashboardFileStorage(string workingDirectory) : base(workingDirectory) {
+    private readonly IHttpContextAccessor сontextAccessor;
 
+    public CustomDashboardFileStorage(IWebHostEnvironment hostingEnvironment, IHttpContextAccessor contextAccessor) 
+        : base(hostingEnvironment.ContentRootFileProvider.GetFileInfo("App_Data/Dashboards").PhysicalPath) {
+        this.сontextAccessor = contextAccessor;
     }
 
     protected override XDocument LoadDashboard(string dashboardID) {
-        Debug.WriteLine(AppContext.Current.User.Identity.Name);
+        Debug.WriteLine(сontextAccessor.HttpContext.User.Identity.Name);
 
         return base.LoadDashboard(dashboardID);
     }

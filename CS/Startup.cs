@@ -46,10 +46,10 @@ namespace ASPNETCore30Dashboard {
             services
                 .AddDevExpressControls()
                 .AddControllersWithViews()
-                .AddDefaultDashboardController(configurator => {
+                .AddDefaultDashboardController((configurator, serviceProvider) => {
                     configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
                     //configurator.SetDashboardStorage(new DashboardFileStorage(FileProvider.GetFileInfo("App_Data/Dashboards").PhysicalPath));
-                    configurator.SetDashboardStorage(new CustomDashboardFileStorage(FileProvider.GetFileInfo("App_Data/Dashboards").PhysicalPath));
+                    configurator.SetDashboardStorage(serviceProvider.GetService<CustomDashboardFileStorage>());
 
                     DataSourceInMemoryStorage dataSourceStorage = new DataSourceInMemoryStorage();
                     DashboardSqlDataSource sqlDataSource = new DashboardSqlDataSource("SQL Data Source", "NWindConnectionString");
@@ -61,12 +61,15 @@ namespace ASPNETCore30Dashboard {
                     dataSourceStorage.RegisterDataSource("sqlDataSource", sqlDataSource.SaveToXml());
                     configurator.SetDataSourceStorage(dataSourceStorage);
 
+                    var contextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
+
                     configurator.CustomParameters += (s, e) => {
-                        e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), AppContext.Current.User.Identity.Name));
+                        e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), contextAccessor.HttpContext.User.Identity.Name));
                     };
                 });
 
             services.AddHttpContextAccessor();
+            services.AddTransient<CustomDashboardFileStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,8 +96,6 @@ namespace ASPNETCore30Dashboard {
                     name: "default",
                     pattern: "{controller=Home}/{action=Login}/{id?}");
             });
-
-            AppContext.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
         }
     }
 }
