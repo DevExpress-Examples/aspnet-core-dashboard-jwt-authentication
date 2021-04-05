@@ -41,3 +41,4 @@ If you open the [Dashboard](CS/Views/Home/Dashboard.cshtml) view without logging
 
 - [T590909 - Web Dashboard - How to load dashboards based on user roles](https://supportcenter.devexpress.com/ticket/details/t590909/web-dashboard-how-to-load-dashboards-based-on-user-roles)
 - [T954359 - MVC Dashboard - How to implement multi-tenant Dashboard architecture](https://supportcenter.devexpress.com/ticket/details/t954359/mvc-dashboard-how-to-implement-multi-tenant-dashboard-architecture)
+- [T983227 - ASP.NET Core Dashboard - How to implement multi-tenant Dashboard architecture](https://supportcenter.devexpress.com/ticket/details/t983227/asp-net-core-dashboard-how-to-implement-multi-tenant-dashboard-architecture)
