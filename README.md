@@ -2,7 +2,9 @@
 
 This example demonstrates how to implement authentication based on [JWT](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide).
 
-We create an [AccountController](CS/Controllers/AccountController.cs) to generate JWT tokens for the predefined set of users. Once the token is generated, we save it to [sessionStorage](https://www.w3schools.com/jsref/prop_win_sessionstorage.asp) in the [Login](Views/Home/Login.cshtml) view.
+## Example Structure
+
+An [AccountController](CS/Controllers/AccountController.cs) generates JWT tokens for the predefined set of users. Once the token is generated, the app saves it to [sessionStorage](https://www.w3schools.com/jsref/prop_win_sessionstorage.asp) in the [Login](Views/Home/Login.cshtml) view.
 
 The [Dashboard](Views/Home/Dashboard.cshtml) view passes this token to the [CustomDashboardController](CS/Controllers/CustomDashboardController.cs) (it is marked with the [AuthorizeAttribute](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-3.1)) by using the [AjaxRemoteService.beforeSend](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.AjaxRemoteService?p=netframework#js_devexpress_dashboard_ajaxremoteservice_beforesend) callback function:
 
@@ -33,12 +35,16 @@ protected override XDocument LoadDashboard(string dashboardID) {
 }
 ```
 
-If you open the [Dashboard](CS/Views/Home/Dashboard.cshtml) view without logging in, you will see the following error:
+If you open the [Dashboard](CS/Views/Home/Dashboard.cshtml) view without logging in, you see the following error:
 
 ![](img/auth_error.png)
 
-## See Also
+## Documentation
 
-- [T590909 - Web Dashboard - How to load dashboards based on user roles](https://supportcenter.devexpress.com/ticket/details/t590909/web-dashboard-how-to-load-dashboards-based-on-user-roles)
-- [T954359 - MVC Dashboard - How to implement multi-tenant Dashboard architecture](https://supportcenter.devexpress.com/ticket/details/t954359/mvc-dashboard-how-to-implement-multi-tenant-dashboard-architecture)
-- [T983227 - ASP.NET Core Dashboard - How to implement multi-tenant Dashboard architecture](https://supportcenter.devexpress.com/ticket/details/t983227/asp-net-core-dashboard-how-to-implement-multi-tenant-dashboard-architecture)
+- [Manage Multi-Tenancy](https://docs.devexpress.com/Dashboard/402924/web-dashboard/dashboard-backend/manage-multi-tenancy)
+
+## More Examples
+
+- [ASP.NET Core Dashboard - How to implement multi-tenant Dashboard architecture](https://github.com/DevExpress-Examples/DashboardUserBasedAspNetCore)
+- [ASP.NET Core Dashboard - How to load different data based on the current user](https://github.com/DevExpress-Examples/DashboardDifferentUserDataAspNetCore)
+- [ASP.NET Core Dashboard - How to implement authentication](https://github.com/DevExpress-Examples/ASPNET-Core-Dashboard-Authentication)
