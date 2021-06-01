@@ -4,9 +4,9 @@ This example demonstrates how to implement authentication based on [JWT](https:/
 
 ## Example Structure
 
-An [AccountController](CS/Controllers/AccountController.cs) generates JWT tokens for the predefined set of users. Once the token is generated, the app saves it to [sessionStorage](https://www.w3schools.com/jsref/prop_win_sessionstorage.asp) in the [Login](Views/Home/Login.cshtml) view.
+An [AccountController](CS/Controllers/AccountController.cs) generates JWT tokens for the predefined set of users. Once the token is generated, the app saves it to [sessionStorage](https://www.w3schools.com/jsref/prop_win_sessionstorage.asp) in the [Login](CS/Views/Home/Login.cshtml) view.
 
-The [Dashboard](Views/Home/Dashboard.cshtml) view passes this token to the [CustomDashboardController](CS/Controllers/CustomDashboardController.cs) (it is marked with the [AuthorizeAttribute](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-3.1)) by using the [AjaxRemoteService.beforeSend](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.AjaxRemoteService?p=netframework#js_devexpress_dashboard_ajaxremoteservice_beforesend) callback function:
+The [Dashboard](CS/Views/Home/Dashboard.cshtml) view passes this token to the [CustomDashboardController](CS/Controllers/CustomDashboardController.cs) (it is marked with the [AuthorizeAttribute](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-3.1)) by using the [AjaxRemoteService.beforeSend](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.AjaxRemoteService?p=netframework#js_devexpress_dashboard_ajaxremoteservice_beforesend) callback function:
 
 ```js
 const tokenKey = "accessToken";
@@ -19,7 +19,7 @@ function onBeforeRender(sender) {
 }
 ```
 
-Main JWT and Dashboard configurations are defined in the [CS/Startup.cs](Startup.cs) file. We use the [IHttpContextAccessor](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-context?view=aspnetcore-3.0) with dependency injection to access the current user name (`HttpContext.User.Identity.Name`) in code. Note that you can access it in [DashboardConfigurator](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWeb.DashboardConfigurator?p=netframework) events and Dashboard storages. Here are corresponding code parts:
+Main JWT and Dashboard configurations are defined in the [Startup.cs](CS/Startup.cs) file. We use the [IHttpContextAccessor](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-context?view=aspnetcore-3.0) with dependency injection to access the current user name (`HttpContext.User.Identity.Name`) in code. Note that you can access it in [DashboardConfigurator](https://docs.devexpress.com/Dashboard/DevExpress.DashboardWeb.DashboardConfigurator?p=netframework) events and Dashboard storages. Here are corresponding code parts:
 
 ```cs
 // Startup.cs:
