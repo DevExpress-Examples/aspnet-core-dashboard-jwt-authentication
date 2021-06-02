@@ -1,3 +1,12 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [Startup.cs](./CS/Startup.cs)
+* [Dashboard.cshtml](./CS/Views/Home/Dashboard.cshtml)
+* [Login.cshtml](./CS/Views/Home/Login.cshtml)
+* [AccountController.cs](./CS/Controllers/AccountController.cs)
+<!-- default file list end -->
+
 # ASP.NET Core Dashboard - How to implement authentication
 
 This example demonstrates how to implement authentication based on [JWT](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide).
