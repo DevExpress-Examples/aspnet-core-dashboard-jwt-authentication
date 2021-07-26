@@ -14,6 +14,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Net;
 
 namespace ASPNETCore30Dashboard {
     public class Startup {
@@ -40,6 +41,19 @@ namespace ASPNETCore30Dashboard {
                         ValidateLifetime = true,
                         IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                         ValidateIssuerSigningKey = true,
+                    };
+                    options.Events = new JwtBearerEvents() {
+                        OnMessageReceived = async context => {
+                            // Pass authentication token from the FormData to the context on the export action
+                            if (string.IsNullOrEmpty(context.Token) && context.Request.HasFormContentType) {
+                                var formData = await context.Request.ReadFormAsync();
+                                var accessToken = formData?["Authorization"];
+                                var path = context.HttpContext.Request.Path;
+                                if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/CustomDashboard")) {
+                                    context.Token = WebUtility.UrlDecode(accessToken).Replace("Bearer ", "");
+                                }
+                            }
+                        }
                     };
                 });
 

@@ -21,9 +21,7 @@
 
             const token = sessionStorage.getItem(tokenKey);
 
-            dashboardControl.remoteService.beforeSend = function (jqXHR, settings) {
-                jqXHR.setRequestHeader("Authorization", "Bearer " + token);
-            }
+            dashboardControl.remoteService.headers = { "Authorization": "Bearer " + token };
         }
     </script>
 </head>
