@@ -1,4 +1,4 @@
-﻿using ASPNETCore30Dashboard.Models;
+﻿using AspNetCoreDashboard.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -7,7 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 
-namespace ASPNETCore30Dashboard.Controllers {
+namespace AspNetCoreDashboard.Controllers {
     public class AccountController : Controller {
         // use hard-coded credentials
         private List<Person> people = new List<Person> {

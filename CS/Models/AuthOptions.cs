@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace ASPNETCore30Dashboard.Models {
+namespace AspNetCoreDashboard.Models {
     public class AuthOptions {
         public const string ISSUER = "MyAuthServer"; // token provider
         public const string AUDIENCE = "MyAuthClient"; // token consumer

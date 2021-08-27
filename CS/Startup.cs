@@ -1,4 +1,4 @@
-using ASPNETCore30Dashboard.Models;
+using AspNetCoreDashboard.Models;
 using DevExpress.AspNetCore;
 using DevExpress.DashboardAspNetCore;
 using DevExpress.DashboardCommon;
@@ -16,7 +16,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Net;
 
-namespace ASPNETCore30Dashboard {
+namespace AspNetCoreDashboard {
     public class Startup {
         public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment) {
             Configuration = configuration;
@@ -59,9 +59,10 @@ namespace ASPNETCore30Dashboard {
 
             services
                 .AddDevExpressControls()
-                .AddControllersWithViews()
-                .AddDefaultDashboardController((configurator, serviceProvider) => {
-                    configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
+                .AddControllersWithViews();
+            services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) => {
+                DashboardConfigurator configurator = new DashboardConfigurator();
+                configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
                     //configurator.SetDashboardStorage(new DashboardFileStorage(FileProvider.GetFileInfo("App_Data/Dashboards").PhysicalPath));
                     configurator.SetDashboardStorage(serviceProvider.GetService<CustomDashboardFileStorage>());
 
@@ -80,6 +81,7 @@ namespace ASPNETCore30Dashboard {
                     configurator.CustomParameters += (s, e) => {
                         e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), contextAccessor.HttpContext.User.Identity.Name));
                     };
+                return configurator;
                 });
 
             services.AddHttpContextAccessor();

@@ -2,7 +2,7 @@
 using DevExpress.DashboardWeb;
 using Microsoft.AspNetCore.Authorization;
 
-namespace ASPNETCore30Dashboard.Controllers {
+namespace AspNetCoreDashboard.Controllers {
     [Authorize]
     public class CustomDashboardController : DashboardController {
         public CustomDashboardController(DashboardConfigurator configurator)
