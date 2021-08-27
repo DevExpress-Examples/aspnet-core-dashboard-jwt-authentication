@@ -3,15 +3,6 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T896804)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
-
-* [Startup.cs](./CS/Startup.cs)
-* [Dashboard.cshtml](./CS/Views/Home/Dashboard.cshtml)
-* [Login.cshtml](./CS/Views/Home/Login.cshtml)
-* [AccountController.cs](./CS/Controllers/AccountController.cs)
-<!-- default file list end -->
-
 # ASP.NET Core Dashboard - How to implement authentication
 
 This example demonstrates how to implement authentication based on [JWT](https://developer.okta.com/blog/2018/03/23/token-authentication-aspnetcore-complete-guide).
@@ -50,6 +41,15 @@ protected override XDocument LoadDashboard(string dashboardID) {
 If you open the [Dashboard](CS/Views/Home/Dashboard.cshtml) view without logging in, you see the following error:
 
 ![](img/auth_error.png)
+
+<!-- default file list -->
+## Files to Look At
+
+* [Startup.cs](./CS/Startup.cs)
+* [Dashboard.cshtml](./CS/Views/Home/Dashboard.cshtml)
+* [Login.cshtml](./CS/Views/Home/Login.cshtml)
+* [AccountController.cs](./CS/Controllers/AccountController.cs)
+<!-- default file list end -->
 
 ## Documentation
 
