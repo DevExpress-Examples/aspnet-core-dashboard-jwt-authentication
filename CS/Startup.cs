@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -15,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Net;
+using System.Linq;
 
 namespace AspNetCoreDashboard {
     public class Startup {
@@ -59,7 +61,14 @@ namespace AspNetCoreDashboard {
 
             services
                 .AddDevExpressControls()
-                .AddControllersWithViews();
+                .AddControllersWithViews()
+				.ConfigureApplicationPartManager((manager) => {
+					var dashboardApplicationParts = manager.ApplicationParts.Where(part => 
+						part is AssemblyPart && ((AssemblyPart)part).Assembly == typeof(DashboardController).Assembly).ToList();
+					foreach(var partToRemove in dashboardApplicationParts) {
+					  manager.ApplicationParts.Remove(partToRemove);
+					}
+				});
             services.AddScoped<DashboardConfigurator>((IServiceProvider serviceProvider) => {
                 DashboardConfigurator configurator = new DashboardConfigurator();
                 configurator.SetConnectionStringsProvider(new DashboardConnectionStringsProvider(Configuration));
