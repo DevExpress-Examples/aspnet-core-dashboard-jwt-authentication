@@ -1,21 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
-    <RootNamespace>AspNetCoreDashboard</RootNamespace>
-    <AssemblyName>AspNetCoreDashboard</AssemblyName>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="DevExpress.AspNetCore.Dashboard" Version="19.2.7" />
-    <PackageReference Include="BuildBundlerMinifier" Version="3.0.415" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="DevExpress.AspNetCore.Dashboard" Version="21.2.10" />
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
