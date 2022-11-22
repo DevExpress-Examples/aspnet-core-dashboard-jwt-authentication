@@ -114,9 +114,8 @@ namespace AspNetCoreDashboard {
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
                 // Maps the dashboard route.
-                //EndpointRouteBuilderExtension.MapDashboardRoute(endpoints, "api/dashboards");
-                EndpointRouteBuilderExtension.MapDashboardRoute(endpoints, "CustomDashboard", "CustomDashboard");
-
+                //endpoints.MapDashboardRoute("api/dashboards");
+                endpoints.MapDashboardRoute("CustomDashboard", "CustomDashboard");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Login}/{id?}");
