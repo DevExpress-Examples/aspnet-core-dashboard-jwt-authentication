@@ -5,7 +5,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="DevExpress.AspNetCore.Dashboard" Version="21.2.10" />
+    <PackageReference Include="DevExpress.AspNetCore.Dashboard" Version="22.2.*" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
