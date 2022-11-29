@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="DevExpress.AspNetCore.Dashboard" Version="22.2.*" />
+    <PackageReference Include="DevExpress.AspNetCore.Dashboard" Version="22.2.2" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
@@ -17,3 +17,4 @@
   </ItemGroup>
 
 </Project>
+
