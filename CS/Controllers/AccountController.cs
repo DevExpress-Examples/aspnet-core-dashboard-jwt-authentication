@@ -1,4 +1,4 @@
-﻿using AspNetCoreDashboard.Models;
+using AspNetCoreDashboard.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
