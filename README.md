@@ -18,7 +18,7 @@ This example demonstrates how to implement authentication based on [JWT](https:/
 
 An [AccountController](CS/Controllers/AccountController.cs) generates JWT tokens for the predefined set of users. Once the token is generated, the app saves it to [sessionStorage](https://www.w3schools.com/jsref/prop_win_sessionstorage.asp) in the [Login](CS/Views/Home/Login.cshtml) view.
 
-The [Dashboard](CS/Views/Home/Dashboard.cshtml) view passes this token to the [CustomDashboardController](CS/Controllers/CustomDashboardController.cs) (it is marked with the [AuthorizeAttribute](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-3.1)) by using the [AjaxRemoteService.headers](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.AjaxRemoteService#js_devexpress_dashboard_ajaxremoteservice_headers) dictionary:
+The [Dashboard](CS/Views/Home/Dashboard.cshtml) view passes this token to the [CustomDashboardController](CS/Controllers/CustomDashboardController.cs) (it is marked with the [AuthorizeAttribute](https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authorization.authorizeattribute?view=aspnetcore-3.1)) by using the [FetchRemoteService.headers](https://docs.devexpress.com/Dashboard/js-DevExpress.Dashboard.FetchRemoteService#js_devexpress_dashboard_ajaxremoteservice_headers) dictionary:
 
 ```js
 const tokenKey = "accessToken";
