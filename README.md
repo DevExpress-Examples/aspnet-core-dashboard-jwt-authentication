@@ -34,9 +34,8 @@ Main JWT and Dashboard configurations are defined in the [Startup.cs](CS/Startup
 ```cs
 // Startup.cs:
 var contextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
-
-configurator.DataSourceCacheKeyCreated += (s, e) => {
-    e.Key.CustomData.Add("LoggedUser", contextAccessor.HttpContext.User.Identity.Name);
+configurator.CustomParameters += (s, e) => {
+    e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), contextAccessor.HttpContext.User.Identity.Name));
 };
 ...
 // CustomDashboardStorage.cs:

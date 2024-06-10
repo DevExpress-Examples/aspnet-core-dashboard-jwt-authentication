@@ -87,8 +87,8 @@ namespace AspNetCoreDashboard {
 
                     var contextAccessor = serviceProvider.GetService<IHttpContextAccessor>();
 
-                    configurator.DataSourceCacheKeyCreated += (s, e) => {
-                        e.Key.CustomData.Add("LoggedUser", contextAccessor.HttpContext.User.Identity.Name);
+                    configurator.CustomParameters += (s, e) => {
+                        e.Parameters.Add(new DashboardParameter("LoggedUser", typeof(string), contextAccessor.HttpContext.User.Identity.Name));
                     };
                 return configurator;
                 });
