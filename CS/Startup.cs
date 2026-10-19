@@ -35,7 +35,8 @@ namespace AspNetCoreDashboard {
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new TokenValidationParameters {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
                         ValidateIssuer = true,
                         ValidIssuer = AuthOptions.ISSUER,
                         ValidateAudience = true,
@@ -43,6 +44,7 @@ namespace AspNetCoreDashboard {
                         ValidateLifetime = true,
                         IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                         ValidateIssuerSigningKey = true,
+                        AuthenticationType = JwtBearerDefaults.AuthenticationScheme
                     };
                     options.Events = new JwtBearerEvents() {
                         OnMessageReceived = async context => {
